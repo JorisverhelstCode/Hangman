@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="CSS/MainPage.css">
-        <script type="module" src="JS/MainModule.js"></script>
+        <script type="module" src="JS/Modules/MainModule.js"></script>
     </head>
     <body>
        <h1>
@@ -17,10 +17,11 @@
        <div id="Main">
            <img ><br>
            <label id="LblWord"></label><br>
-           <label id="LblGuessedLetters">You have already tried:</label><br>
+           <label >You have already tried:</label><br>
+           <label id="LblGuessedLetters"></label><br>
            <form>
-               <label>Guess a letter: </label>
                <input type="text" id="FieldGuess">
+               <button id="BtnGuess">Guess</button>
            </form>
            <label id="LblResponse"></label>
        </div>
