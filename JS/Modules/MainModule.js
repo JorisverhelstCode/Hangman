@@ -1,16 +1,8 @@
-import { HangmanGame } from "./Hangman";
-import { Load } from "./DataFetcherModule";
+import { HangmanGame } from "./Hangman.js";
+import * as Elements from "./DataFetcherModule.js";
 
-Load();
 var Game = new HangmanGame();
-var LblScore = document.getElementById("LblScore");
-var LblTriesLeft = document.getElementById("LblTriesLeft");
-var BtnNewWord = document.getElementById("BtnNewWord");
-var LblWord = document.getElementById("LblWord");
-var LblGuessedLetters = document.getElementById("LblGuessedLetters");
-var FieldGuess = document.getElementById("FieldGuess");
-var LblResponse = document.getElementById("LblResponse");
-var BtnGuess = document.getElementById("BtnGuess");
+
 
 BtnGuess.addEventListener("click", BtnGuessOnClickEvent);
 BtnNewWord.addEventListener("click", BtnNewWordOnClickEvent);

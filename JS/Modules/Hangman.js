@@ -1,5 +1,5 @@
-import { Load } from "./DataFetcherModule";
-import { UpdateScore, UpdateResponse, UpdateWordField } from "./MainModule";
+import { Load } from "./DataFetcherModule.js";
+import { UpdateScore, UpdateResponse, UpdateWordField } from "./MainModule.js";
  
 export class HangmanGame{
     constructor(word, guesses, lives, score){
@@ -7,7 +7,6 @@ export class HangmanGame{
         this.GuessedLetters = guesses ? guesses : [];
         this.Lives = lives ? lives : 6;
         this.Score = score ? score: 0;
-        Load();
     }
 
     Guess (letter) {
