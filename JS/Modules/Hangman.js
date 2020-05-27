@@ -1,26 +1,26 @@
-import { Load } from "./DataFetcherModule.js";
-import { UpdateScore, UpdateResponse, UpdateWordField } from "./MainModule.js";
+import * as Elements from "./DataFetcherModule.js";
  
 export class HangmanGame{
     constructor(word, guesses, lives, score){
         this.Word = word ? word : "";
         this.GuessedLetters = guesses ? guesses : [];
-        this.Lives = lives ? lives : 6;
+        this.Lives = lives ? lives : 7;
         this.Score = score ? score: 0;
+        this.UpdateImage();
     }
 
     Guess (letter) {
         if (letter.length != 1){
-            UpdateResponse("Please enter a single letter!");
+            Elements.LblResponse.innerText = "Please enter a single letter!";
         } else {
             if (this.GuessedLetters.includes(letter)) {
-                UpdateResponse("You have already guessed this letter, please try another one!");
+                Elements.LblResponse.innerText = "You have already guessed this letter, please try another one!";
             } else {
                 if (this.Word.includes(letter)){
                     if (this.Word == this.GuessedLetters){
                         this.Score++;
-                        UpdateScore();
-                        //Change Response & Word
+                        Elements.LblScore.innerText = "Score: " + Score;
+                        //Change Response & Word    
                     } else {
                         //Change Response & Word
                     }
@@ -39,7 +39,9 @@ export class HangmanGame{
         //API Call
         this.UpdateWord();
         this.GuessedLetters = [];
-        this.Lives = 6;
+        this.Lives = 7;
+        Elements.LblTriesLeft.innerText = "Tries left: " + this.Lives;
+        Elements.LblGuessedLetters.innerText = GuessedLettersInWordForm;
     }
 
     UpdateWord() {
@@ -52,7 +54,10 @@ export class HangmanGame{
             }
             WordText += " ";
         });
-        UpdateWordField(WordText);
+        Elements.LblWord.innerText = WordText;
     }
     
+    UpdateImage(){
+        Elements.ImgFigure.src = "Images/Hangman" + (8 - this.Lives) + ".jpg";
+    }
 }

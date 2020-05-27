@@ -8,6 +8,11 @@ var LblResponse = document.getElementById("LblResponse");
 var BtnGuess = document.getElementById("BtnGuess");
 var ImgFigure = document.getElementById("ImgFigure");
 
+var url = "";
+
+//fetch(url)
+//   .then((data) => )
+
 export{ 
-   LblScore, LblTriesLeft, BtnNewWord, LblWord, LblGuessedLetters , FieldGuess , LblResponse
+   LblScore, LblTriesLeft, BtnNewWord, LblWord, LblGuessedLetters , FieldGuess , LblResponse, BtnGuess, ImgFigure
 }
