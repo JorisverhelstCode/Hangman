@@ -6,30 +6,37 @@ export class HangmanGame{
         this.GuessedLetters = guesses ? guesses : [];
         this.Lives = lives ? lives : 7;
         this.Score = score ? score: 0;
-        this.UpdateImage();
+        this.UpdateLives();
+        this.UpDateScore();
     }
 
     Guess (letter) {
         if (letter.length != 1){
-            Elements.LblResponse.innerText = "Please enter a single letter!";
+            this.SetResponse("Please enter a single letter!");
         } else {
             if (this.GuessedLetters.includes(letter)) {
-                Elements.LblResponse.innerText = "You have already guessed this letter, please try another one!";
+                this.SetResponse("You have already guessed this letter, please try another one!");
             } else {
+                this.GuessedLetters.push(letter);
                 if (this.Word.includes(letter)){
                     if (this.Word == this.GuessedLetters){
                         this.Score++;
-                        Elements.LblScore.innerText = "Score: " + Score;
-                        //Change Response & Word    
+                        this.UpDateScore();
+                        this.SetResponse("Congratulations you have found the word!");
+                        this.UpdateWord();  
                     } else {
-                        //Change Response & Word
+                        this.SetResponse(letter + " is indeed in the word!");
+                        this.UpdateWord();
                     }
                 } else{
                     this.Lives--;
                     if (this.Lives == 0){
-                        //Change Response message
+                        this.SetResponse("Oh no you are out of lives :o");
+                    } else{
+                        this.SetResponse("Unfortunatly " + letter + " is not in the word we are looking for");
                     }
-                    //Change Response message
+                    this.UpdateLives();
+                    Elements.BtnGuess.style = "hidden";
                 }
             }
         }
@@ -40,8 +47,9 @@ export class HangmanGame{
         this.UpdateWord();
         this.GuessedLetters = [];
         this.Lives = 7;
-        Elements.LblTriesLeft.innerText = "Tries left: " + this.Lives;
+        this.UpdateLives();
         Elements.LblGuessedLetters.innerText = GuessedLettersInWordForm;
+        Elements.BtnGuess.style = "visible";
     }
 
     UpdateWord() {
@@ -57,7 +65,16 @@ export class HangmanGame{
         Elements.LblWord.innerText = WordText;
     }
     
-    UpdateImage(){
+    UpdateLives(){
+        Elements.LblTriesLeft.innerText = "Tries left: " + this.Lives;
         Elements.ImgFigure.src = "Images/Hangman" + (8 - this.Lives) + ".jpg";
+    }
+
+    SetResponse(text){
+        Elements.LblResponse.innerText = text;
+    }
+
+    UpDateScore(){
+        Elements.LblScore.innerText = "Score: " + this.Score;
     }
 }
